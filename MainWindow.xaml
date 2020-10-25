@@ -64,19 +64,23 @@
         <ComboBox x:Name="cmbType" Grid.Column="1" HorizontalAlignment="Left" Margin="231,265,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Margin="428,258,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="29" IsReadOnly="True" RenderTransformOrigin="0.501,0.704"/>
         <Menu x:Name="mnuMain" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top"
-Width="111" Grid.ColumnSpan="2">
+Width="230">
             <MenuItem Header="File">
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="Exit" Click="exitToolStripMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="_Doughnuts">
                 <MenuItem Header="Make">
                     <MenuItem Header="Raised">
-                        <MenuItem x:Name="glazedMenuItem" Header="Glazed"/>
-                        <MenuItem x:Name="sugarMenuItem" Header="Sugar"/>
+                        <MenuItem x:Name="glazedToolStripMenuItem" Header="Glazed"
+Click="glazedToolStripMenuItem_Click" IsCheckable="True"/>
+                        <MenuItem x:Name="sugarToolStripMenuItem" Header="Sugar"
+IsCheckable="True" Click="sugarToolStripMenuItem_Click"/>
                     </MenuItem>
                     <MenuItem Header="Filled"/>
                 </MenuItem>
+                <MenuItem x:Name="mnuStop" Header="Stop"/>
             </MenuItem>
-        </Menu>
+        </Menu>
+
     </Grid>
 </Window>
