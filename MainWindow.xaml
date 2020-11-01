@@ -1,12 +1,16 @@
-﻿<Window x:Class="Baciu_Theodora_Lab2.MainWindow"
+﻿<Window x:Name="frmMain" x:Class="Baciu_Theodora_Lab2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Baciu_Theodora_Lab2"
-        mc:Ignorable="d"
-        Title="Virtual Doughnuts Factory" Height="450" Width="800" ResizeMode="CanMinimize">
-    <Grid x:Name="frmMain" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        xmlns:local="clr-namespace:VirtualDoughnutFactory"
+        xmlns:CustomCommands="clr-namespace:NumeStudent_PrenumeStudent_Lab2.CustomCommands"
+         mc:Ignorable="d"
+        Title="Virtual Doughnut Factory" Height="420.5" Width="643.5"
+         ResizeMode="NoResize" Background="{DynamicResource {x:Static
+        SystemColors.ActiveBorderBrushKey}}" Loaded="frmMain_Loaded"
+TextBoxBase.TextChanged="frmMain_TextChanged">
+    <Grid MenuItem.Click="FilledItemsShow_Click">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="19*"/>
             <ColumnDefinition Width="181*"/>
@@ -56,12 +60,12 @@
                 <ListBox Height="69" Width="414" Canvas.Top="44" Canvas.Left="22"/>
                 <Label x:Name="lblTotal" Content="Total&#xD;&#xA;" Canvas.Left="274" Canvas.Top="121" RenderTransformOrigin="0.237,0.278" FontWeight="Bold"/>
                 <TextBox x:Name="txtTotal" Canvas.Left="317" Canvas.Top="124" Text="0" TextWrapping="Wrap" Width="120" IsReadOnly="True"/>
-                <Button x:Name="btnAddToSale" Content="Add To Sale" Canvas.Left="465" Canvas.Top="44" RenderTransformOrigin="0.559,1.529" Width="81" FontWeight="Normal"/>
-                <Button x:Name="btnRemoveItem" Content="Remove Item" Canvas.Left="466" Canvas.Top="78" Width="80" FontWeight="Normal"/>
-                <Button x:Name="btnCheckOut" Content="CheckOut" Canvas.Left="472" Canvas.Top="121" Width="67" Height="21"/>
+                <Button x:Name="btnAddToSale" Content="Add To Sale" Canvas.Left="465" Canvas.Top="44" RenderTransformOrigin="0.559,1.529" Width="81" FontWeight="Normal" Click="btnAdd_Click"/>
+                <Button x:Name="btnRemoveItem" Content="Remove Item" Canvas.Left="466" Canvas.Top="78" Width="80" FontWeight="Normal" />
+                <Button x:Name="btnCheckOut" Content="CheckOut" Canvas.Left="472" Canvas.Top="121" Width="67" Height="21" Click=" btnCheckOut_Click"/>
             </Canvas>
         </GroupBox>
-        <ComboBox x:Name="cmbType" Grid.Column="1" HorizontalAlignment="Left" Margin="231,265,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cmbType" Grid.Column="1" HorizontalAlignment="Left" Margin="231,265,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmbType_SelectionChanged"/>
         <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Margin="428,258,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="29" IsReadOnly="True" RenderTransformOrigin="0.501,0.704"/>
         <Menu x:Name="mnuMain" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top"
 Width="230">
@@ -76,9 +80,13 @@ Click="glazedToolStripMenuItem_Click" IsCheckable="True"/>
                         <MenuItem x:Name="sugarToolStripMenuItem" Header="Sugar"
 IsCheckable="True" Click="sugarToolStripMenuItem_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Filled"/>
+                    <MenuItem Header="Filled" Click="FilledItems_Click"/>
                 </MenuItem>
-                <MenuItem x:Name="mnuStop" Header="Stop"/>
+                <MenuItem x:Name="mnuStop" Header="Stop" Click="stopToolStripMenuItem_Click"
+InputGestureText="Ctrl+S" Command="CustomCommands:StopCommand.Launch" />
+
+                <MenuItem Header="Inventory"  Command="ApplicationCommands.Print" ></MenuItem>
+
             </MenuItem>
         </Menu>
 
